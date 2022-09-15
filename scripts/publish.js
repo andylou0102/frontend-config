@@ -40,9 +40,9 @@ async function publishSinglePackage ({
     cwd: packagePath,
   })
 
-  // const extractedPackagePath = join(packagePath, 'package')
+  const extractedPackagePath = join(packagePath, 'package')
 
-  const pkgJsonPath = join(packagePath, 'package.json')
+  const pkgJsonPath = join(extractedPackagePath, 'package.json')
   // eslint-disable-next-line import/no-dynamic-require, global-require
   const pkgJson = require(pkgJsonPath)
 
@@ -55,7 +55,7 @@ async function publishSinglePackage ({
   await writeFile(pkgJsonPath, JSON.stringify(pkgJson, null, 2))
   const tagName = `${pkgJson.name.replace('@frontend-config/', '')}@${version}`
 
-  const git = simpleGit(packagePath)
+  const git = simpleGit(extractedPackagePath)
   await git
     .init()
     .add('.')
@@ -67,7 +67,7 @@ async function publishSinglePackage ({
     })
 
   await rmRf(tarballPath)
-  await rmRf(packagePath)
+  await rmRf(extractedPackagePath)
 }
 
 const packageRootPathList = [
