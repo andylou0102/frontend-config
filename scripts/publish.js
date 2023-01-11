@@ -19,6 +19,7 @@ const packageNameList = [
   '@frontend-config/eslint-config-basic',
   '@frontend-config/eslint-config-ts',
   '@frontend-config/eslint-config-vue3',
+  '@frontend-config/stylelint-config-scss',
 ]
 
 async function publishSinglePackage ({
@@ -74,6 +75,7 @@ const packageRootPathList = [
   './packages/eslint/basic',
   './packages/eslint/ts',
   './packages/eslint/vue3',
+  './packages/stylelint/scss',
 ]
 
 async function publishAll () {
